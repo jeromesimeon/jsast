@@ -1,14 +1,14 @@
 ############################################################################
-# You can define your own path to COQBIN by creating a file called
+# You can define your own path to ROCQBIN by creating a file called
 # "settings.sh" and placing the right definitions into it, e.g.
-#    COQBIN=/var/tmp/charguer/v8.4/bin/
+#    ROCQBIN=/var/tmp/charguer/v8.4/bin/
 #
-# Note that COQBIN should have a leading slash.
+# Note that ROCQBIN should have a leading slash.
 # Note that if you add a settings.sh file, you need to do "make clean" first.
 
-# Default paths for COQBIN, etc are as follows:
+# Default paths for ROCQBIN, etc are as follows:
 
-COQBIN=
+ROCQBIN=
 
 # Use bash as the default shell
 SHELL=/bin/bash
@@ -16,10 +16,10 @@ SHELL=/bin/bash
 
 #######################################################
 
-COQINCLUDES=-R coq JsCert
-COQC=$(COQBIN)coqc
-COQDEP=$(COQBIN)coqdep
-COQFLAGS=
+ROCQINCLUDES=-R rocq JsCert
+ROCQC=$(ROCQBIN)rocq compile
+ROCQDEP=$(ROCQBIN)rocq dep
+ROCQFLAGS=
 
 OCAMLBUILD=ocamlbuild
 OCAMLBUILDFLAGS=-cflags "-w -20"
@@ -28,48 +28,48 @@ OCAMLBUILDFLAGS=-cflags "-w -20"
 # MAIN SOURCE FILES
 
 JS_SRC=\
-	coq/JsNumber.v \
-	coq/JsSyntax.v \
+	rocq/JsNumber.v \
+	rocq/JsSyntax.v \
 
 
 #######################################################
 # MAIN TARGETS
 
-all: coq
+all: rocq
 
 .PHONY: all
 
 #######################################################
-# Coq Compilation Implicit Rules
+# Rocq Compilation Implicit Rules
 %.v.d: %.v
-	$(COQDEP) $(COQINCLUDES) $< > $@
+	$(ROCQDEP) $(ROCQINCLUDES) $< > $@
 
 # If this rule fails for some reason, try `make clean_all && make`
 %.vo: %.v
-	$(COQC) $(COQFLAGS) $(COQINCLUDES) $<
+	$(ROCQC) $(ROCQFLAGS) $(ROCQINCLUDES) $<
 
 #######################################################
 # JsAst Specific Rules
-.PHONY: coq proof
+.PHONY: rocq proof
 
-coq: Makefile.coq
-	@$(MAKE) -f Makefile.coq
+rocq: Makefile.rocq
+	@$(MAKE) -f Makefile.rocq
 
-install: Makefile.coq
-	@$(MAKE) -f Makefile.coq install
+install: Makefile.rocq
+	@$(MAKE) -f Makefile.rocq install
 
 #######################################################
 # CLEAN
 .PHONY: clean
 
 clean:
-	-rm -f coq/*.{vo,glob,d}
+	-rm -f rocq/*.{vo,glob,d}
 
 cleanall:
 	@$(MAKE) clean
-	-rm -f Makefile.coq Makefile.coq.conf .Makefile.coq.d .coqdeps.d
+	-rm -f Makefile.rocq Makefile.rocq.conf .Makefile.rocq.d .rocqdeps.d
 
 ##
-Makefile.coq: Makefile $(JS_SRC)
-	@coq_makefile -f _CoqProject $(JS_SRC) -o Makefile.coq
+Makefile.rocq: Makefile $(JS_SRC)
+	@rocq makefile -f _RocqProject $(JS_SRC) -o Makefile.rocq
 

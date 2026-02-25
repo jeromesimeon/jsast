@@ -1,8 +1,8 @@
 (* Set Implicit Arguments. *)
 (* Require Export Shared. *)
-Require Floats PrimFloat.
-Require Import BinPos Zpower ZArith.
-Require Import String.
+From Stdlib Require Floats PrimFloat.
+From Stdlib Require Import BinPos Zpower ZArith.
+From Stdlib Require Import String.
 
 
 (**************************************************************)

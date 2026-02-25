@@ -1,5 +1,5 @@
 opam-version: "2.0"
-name: "coq-jsast"
+name: "rocq-jsast"
 version: "3.0.0"
 synopsis: "A minimal JavaScript syntax tree carved out of the JsCert project"
 description: """
@@ -37,7 +37,7 @@ install: [
 remove: ["rm" "-R" "%{lib}%/coq/user-contrib/JsAst"]
 depends: [
   "ocaml" {>= "4.08.0"}
-  "coq" { >= "8.11.2" }
+  "rocq-prover" { >= "9.1.0" }
 ]
 
 tags: [ "keyword:javascript" "keyword:compiler" "date:2020-07-29" "logpath:JsAst" ]
