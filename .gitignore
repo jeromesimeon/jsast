@@ -8,7 +8,7 @@ TAGS
 *~
 *#
 
-Makefile.coq
-Makefile.coq.conf
-.Makefile.coq.d
-.coqdeps.d
+Makefile.rocq
+Makefile.rocq.conf
+.Makefile.rocq.d
+.rocqdeps.d

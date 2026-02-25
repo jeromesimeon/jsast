@@ -6,13 +6,13 @@ This is a minimal JavaScript syntax tree carved out of the
 ## Installation
 
 JsAst depends on:
-- Coq (version 8.11.2) or later
+- Rocq (version 9.1.0) or later
 
 ### From opam
 
 ```
-opam repo add coq-released https://coq.inria.fr/opam/released
-opam install coq-jsast
+opam repo add rocq-released https://rocq-prover.org/opam/released
+opam install rocq-jsast
 ```
 
 ### Local with opam
@@ -30,7 +30,7 @@ To compile, do:
 make
 ```
 
-To install as a Coq user contribution, do:
+To install as a Rocq user contribution, do:
 ```
 make install
 ```

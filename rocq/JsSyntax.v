@@ -1,7 +1,7 @@
 Set Implicit Arguments.
-Require Export Ascii String.
+From Stdlib Require Export Ascii String.
+From Stdlib Require Import ZArith.
 Require JsNumber.
-Require Import ZArith.
 Notation "'number'" := (JsNumber.number).
 
 
